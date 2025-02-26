@@ -125,13 +125,6 @@ export async function POST(request: Request) {
       message: "Form submitted successfully",
       data: data,
       uniqueCode: uniqueCode  // Return the code to the client
-    },
-    { 
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      }
     }
   
   );
