@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Shield, Clock, Phone, Menu, X, ChevronRight, Gift } from "lucide-react";
 import { useState } from "react";
+import  Link  from "next/navigation"
+import { toast } from "sonner"
+
 
 
 export default function Home() {
@@ -37,6 +40,10 @@ export default function Home() {
         }),
       });
 
+      console.log(response)
+      if(response.status==200){
+        toast("Request submitted successfully")
+      }
       if (!response.ok) {
         throw new Error('Form submission failed');
       }
@@ -128,6 +135,7 @@ export default function Home() {
               </Button>
             </div>
             <div className="hidden md:block">
+            
               <img
                 src="https://5.imimg.com/data5/SELLER/Default/2021/12/MK/FB/MR/142037608/suzuki-burgman-street-125-motorcycle-500x500.jpg"
                 alt="Bike Insurance"
@@ -148,7 +156,10 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
+              <div className="flex flex-col">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">🎉 Limited Time Mega Offer!</h2>
+              <p className="">(If you complete your payment in 48hrs)</p>
+              </div>
               <div className="space-y-4 mb-6">
                 <p className="text-xl md:text-2xl">
                   Choose Your Premium Gift:
@@ -295,7 +306,7 @@ export default function Home() {
                   <a href="#" className="hover:text-blue-400 transition-colors">Contact</a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
+                  <a href="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
                 </li>
               </ul>
             </div>
