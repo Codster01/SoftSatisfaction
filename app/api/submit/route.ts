@@ -1,6 +1,6 @@
 import { google } from 'googleapis';
 import { NextResponse } from "next/server";
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
 interface FormData {
   name: string;
