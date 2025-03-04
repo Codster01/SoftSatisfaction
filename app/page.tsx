@@ -6,6 +6,13 @@ import { Shield, Clock, Phone, Menu, X, ChevronRight, Gift } from "lucide-react"
 import { useState } from "react";
 import  Link  from "next/navigation"
 import { toast } from "sonner"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 
 
@@ -15,7 +22,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [insuranceType, setInsuranceType] = useState("");
-
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -42,7 +49,7 @@ export default function Home() {
 
       console.log(response)
       if(response.status==200){
-        toast("Request submitted successfully")
+        setIsDialogOpen(true);
       }
       if (!response.ok) {
         throw new Error('Form submission failed');
@@ -194,7 +201,7 @@ export default function Home() {
                     type="text"
                     name="name"
                     className="h-12 rounded-xl"
-                    placeholder="Santosh"
+                    
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -205,7 +212,6 @@ export default function Home() {
                     type="email"
                     name="email"
                     className="h-12 rounded-xl"
-                    placeholder="santosh@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -216,7 +222,6 @@ export default function Home() {
                     type="tel"
                     name="phone"
                     className="h-12 rounded-xl"
-                    placeholder="+91 7030376143"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
@@ -228,7 +233,6 @@ export default function Home() {
                     value={insuranceType}
                     onChange={(e) => setInsuranceType(e.target.value)}
                     className="h-12 rounded-xl"
-                    
                   >
                     <option value="" disabled>Select insurance type</option>
                     <option value="comprehensive">Comprehensive Coverage</option>
@@ -282,8 +286,11 @@ export default function Home() {
               </div>
             ))}
           </div>
+
         </div>
+
       </div>
+  
 
       {/* Footer - Mobile Optimized */}
       <footer className="bg-gray-900 text-gray-300">
@@ -318,8 +325,24 @@ export default function Home() {
               </div>
             </div>
           </div>
+
         </div>
       </footer>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="text-center text-xl">Thank You for Registering!</DialogTitle>
+          <DialogDescription className="text-center pt-2">
+            We appreciate your interest. Our team will contact you within the next 24 hours.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex justify-center mt-4">
+          <Button onClick={() => setIsDialogOpen(false)} className="bg-blue-600 hover:bg-blue-700">
+            Close
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
     </div>
   );
 }

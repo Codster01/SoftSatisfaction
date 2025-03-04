@@ -111,6 +111,7 @@ export async function POST(request: Request) {
           <h2 style="color: #333;">Thank You for Choosing Us</h2>
           <p>Dear ${data.name},</p>
           <p>Thank you for submitting your information. We appreciate your trust in our services.</p>
+          <p>Kindly be ready with your RC book and KYC documnets that is Aadhar card & Pan card </p>
           <p>Your unique verification number is: <strong>${uniqueCode}</strong></p>
           <p>Please keep this code for your records and reference it in all future communications regarding your insurance.</p>
           <p>If you have any questions, please don't hesitate to contact us.</p>
